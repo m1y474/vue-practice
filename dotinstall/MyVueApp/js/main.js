@@ -1,3 +1,5 @@
+Vue.config.devtools = true;
+
 (function () {
   'use strict';
 
