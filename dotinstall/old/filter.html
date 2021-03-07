@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+<body>
+	<!-- https://jp.vuejs.org/v2/guide/filters.html -->
+	<div id="myapp">
+		<div v-text="msg|uppercase"></div>
+		<!-- 最初の一文字だけ大文字にする -->
+		<div v-text="msg|capitalize"></div>
+		<!-- デフォルトが$なのでスペースで区切ると¥に変えられる -->
+		<div v-text="price|currency ¥"></div>
+		<!-- jsonで表示する -->
+		<div>{{ $data|json }}</div>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				msg: 'hello',
+				price: 2938495347543,
+			},
+		});
+	</script>
+</body>
+</html>

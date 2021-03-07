@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="myapp">
+		<input type="text" name="" v-model="keyword">
+		<ul>
+			<!-- 名前でorderByする -->
+			<li v-repeat="users|filterBy keyword | orderBy 'name'">{{ name }} - {{ score }}</li>
+			<hr>
+			<!-- scoreの降順ででorderByする -->
+			<li v-repeat="users|filterBy keyword | orderBy 'score' -1">{{ name }} - {{ score }}</li>
+			<hr>
+			<!-- orderKey reverseを使う -->
+			<li v-repeat="users|filterBy keyword | orderBy orderKey reverse">{{ name }} - {{ score }}</li>
+		</ul>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				users: [
+					{ name: 'miyata', score: 62 },
+					{ name: 'miyata1', score: 84 },
+					{ name: 'dotinstall', score: 100 },
+				],
+				keyword: '',
+				orderKey: 'score',
+				reverse: false, // 昇順 false 降順 true
+			},
+		});
+	</script>
+</body>
+
+</html>

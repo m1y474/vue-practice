@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+	<div id="app" class="container">
+		<h1>
+			<button @click="purge">Purge</button>
+			My Todos
+			<span class="info">({{ remaining.length }}/{{ todos.length }})</span>
+		</h1>
+		<!-- todosがある場合のみ -->
+		<ul v-if="todos.length">
+			<!-- <li>{{ todos[0] }}</li>
+			<li>{{ todos[1] }}</li>
+			<li>{{ todos[2] }}</li>
+			<hr> -->
+			<!-- todos 配列を todo 変数に -->
+			<!-- v-ifとv-forは一緒に使わない -->
+			<li v-if="todos.length" v-for="(todo, index) in todos">
+				<input type="checkbox" name="" id="" v-model="todo.isDone">
+				<!-- todo:isDoneがtrueのばあいにdoneクラスをつける 書き方はどちらでもいい -->
+				<!-- <span v-bind:class="{{ done: todo:isDone }}"></span> -->
+				<span :class="{ done: todo.isDone }">{{ todo.title }}</span>
+				<span @click="deleteItem(index)" class="command">[x]</span>
+			</li>
+			<!-- todosがない場合 -->
+			<!-- <li v-show="!todos.length">Nothing to do, yay!</li> -->
+		</ul>
+		<!-- todosがない場合 -->
+		<ul v-else>
+			<li>Nothing to do, yay!</li>
+		</ul>
+		<!-- どちらの書き方でもOK -->
+		<!-- <form v-on:submit="addItem"> -->
+		<form @submit.prevent="addItem">
+			<input type="text" v-model="newItem" id="">
+			<button type="submit">add</button>
+		</form>
+	</div>
+	<script src="js/todo.js"></script>
+</body>
+
+</html>

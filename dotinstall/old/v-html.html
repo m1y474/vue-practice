@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+</head>
+<body>
+	<div id="myapp">
+		<!-- マスタッシュ記法 -->
+		<div>{{ 'content: ' + content }}</div>
+		<!-- エスケープされない v2では禁止されている -->
+		<div>{{{ content }}}</div>
+		<!-- v-html を使用する -->
+		<div v-html="content"></div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				// content: 'hello world',
+				content: '<h1>title</h1>'
+			},
+		});
+	</script>
+</body>
+</html>

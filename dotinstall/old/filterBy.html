@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="myapp">
+		<input type="text" name="" v-model="keyword">
+		<ul>
+			<!-- input[v-model="keyword"]にはいった文字列でfilterする -->
+			<li v-repeat="users|filterBy keyword">{{ name }} - {{ score }}</li>
+			<hr>
+			<!-- 名前もしくはscoreにmが入っているものを抽出する -->
+			<li v-repeat="users|filterBy 'm'">{{ name }} - {{ score }}</li>
+			<!-- 名前にmが入っているものを抽出する -->
+			<li v-repeat="users|filterBy 'm' in 'name'">{{ name }} - {{ score }}</li>
+		</ul>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				users: [
+					{ name: 'miyata', score: 62 },
+					{ name: 'miyata1', score: 84 },
+					{ name: 'dotinstall', score: 100 },
+				],
+				keyword: '',
+			},
+		});
+	</script>
+</body>
+
+</html>

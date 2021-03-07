@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+</head>
+<body>
+	<div id="mycounter">
+		<!-- vディレクティブ -->
+		<div v-text="count"></div>
+		<div v-text="count * 10"></div>
+		<div v-text="'(' + count + ')'"></div>
+		<div v-text="count ? count : '-'"></div>
+		<!-- メソッド名を指定 -->
+		<button v-on="click: countUp">Up</button>
+		<!-- 簡単な式であれば直接書くことも可能 -->
+		<button v-on="click: count++">Up</button>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+	<script>
+		// object(ViewModel) - data/methods(Model) <--> interface(View)
+		// Model View ViewModel - MVVM
+
+		// counter
+		var vm = new Vue({
+			el: '#mycounter',
+			data: {
+				count: 0,
+			},
+			methods: {
+				countUp: function() {
+					this.count++;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="myapp">
+		side: <input type="text" v-model="side" id="">
+		area: {{ area }}
+		<hr>
+		area: <input type="text" v-model="area" id="">
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				side: 20,
+			},
+			computed: {
+				// side を入力するとareaに結果を表示する
+				area: function() {
+					return this.side * this.side;
+				},
+
+				area: {
+					// 値を設定する
+					get: function() {
+						return this.side * this.side;
+					},
+					// areaにセットされた値がvに入る
+					set: function(v) {
+						this.side = Math.sqrt(v);
+					}
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

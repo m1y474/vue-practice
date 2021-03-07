@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+<body>
+	<div id="myapp">
+		<!-- 要素を非表示にする -->
+		<div v-show="showContent">
+			{{ content }}
+		</div>
+		<!-- 要素自体を消去する -->
+		<div v-if="showContent">
+			{{ content }}
+		</div>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				content: 'hello world',
+				showContent: true,
+			},
+		});
+	</script>
+</body>
+</html>

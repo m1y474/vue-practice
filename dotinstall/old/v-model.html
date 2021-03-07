@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+<body>
+	<div id="myapp">
+		<p>
+			<input type="text" name="" v-model="name" id="">
+			{{name}}
+		</p>
+		<p>
+			<input type="checkbox" name="" v-model="isAdmin" id="">
+			{{isAdmin ? 'admin' : 'not admin'}}
+		</p>
+		<p>
+			<input type="radio" name="phone" v-model="phone" value="iphone">iphone
+			<input type="radio" name="phone" v-model="phone" value="Android">Android
+			{{phone}}
+		</p>
+		<p>
+			<select name="" v-model="city" id="">
+				<option value="tokyo">tokyo</option>
+				<option value="osaka">osaka</option>
+				<option value="nagoya">nagoya</option>
+			</select>
+			{{city}}
+		</p>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				name: 'miyata',
+				isAdmin: true,
+				phone: 'Android',
+				city: 'nagoya'
+			},
+		});
+	</script>
+</body>
+</html>

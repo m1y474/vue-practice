@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+	<div id="app">
+		<p>Total Likes: {{ total }}</p>
+		<!-- <like-component message="Like" v-on: increment="incrementToal"></like-component> -->
+		<like-component message="Like" @increment="incrementTotal"></like-component>
+		<like-component message="Awesome" @increment="incrementTotal"></like-component>
+		<like-component message="Great" @increment="incrementTotal"></like-component>
+		<like-component @increment="incrementTotal"></like-component>
+	</div>
+	<script src="js/components.js"></script>
+</body>
+
+</html>

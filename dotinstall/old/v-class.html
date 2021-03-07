@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+	<style>
+		.red {
+			color: red;
+		}
+		.bold {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div id="myapp">
+		<div v-class="myStyle">
+			{{ content }}
+		</div>
+		<!-- redのクラスをisRedがtrueの時につける
+		boldのクラスをisBoldがtrueの時につける -->
+		<div v-class="red: isRed, bold: isBold">
+			{{ content }}
+		</div>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				content: 'hello world',
+				myStyle: 'bold', // @todo 複数つけたい時は？
+				isRed: true,
+				isBold: true,
+			},
+		});
+	</script>
+</body>
+</html>

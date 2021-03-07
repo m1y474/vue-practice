@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js Practice</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="myapp">
+		<!-- 入力するとイベント -->
+		<input type="text" name="" v-on="keyup: showLength" v-model="msg">
+		<!-- enterキーを押した時にイベント -->
+		<input type="text" name="" v-on="keyup: showLength|key enter" v-model="msg">
+		<!-- キーコード65: aを押した時にイベント -->
+		<input type="text" name="" v-on="keyup: showLength|key 65" v-model="msg">
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '#myapp',
+			data: {
+				msg: '',
+			},
+			methods: {
+				showLength: function () {
+					console.log(this.msg.length);
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>
