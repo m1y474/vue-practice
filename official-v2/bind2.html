@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app-7">
+		<div v-bind:style="{ color: activeColor, fontSize: fontSize }">text</div>
+		<div v-bind:style="styleObj">text</div>
+		<div v-bind:style="[baseStyles, overRidingStyles]">text</div>
+	</div>
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#app-7',
+			data: {
+				baseStyles: {
+					color: 'orange',
+					border: '1px solid red'
+				},
+				overRidingStyles: {
+					// border: '1px solid black'
+				},
+				styleObj: {
+					color: 'blue',
+					fontSize: '40px',
+				},
+				activeColor: 'red',
+				fontSize: '30px'
+			}
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="todo-list-example">
+		<label for="new-todo">Add a todo</label>
+		<input 
+		v-model="newTodoText"
+		id="new-todo"
+		placeholder="E.g. Feed the cat">
+		<button @click="addNewTodo">Add</button>
+		<ul>
+			<!-- v-modelはv-onとv-bindをまとめて１行で書くためのシュガーシンタックス -->
+			<!-- ulの中ではliのみが有効のためisを使用
+			<todo-item>と同じ意味だが潜在的なブラウザの解析エラーを回避する -->
+			<li is="todo-item"
+			v-for="(todo, index) in todos"
+			v-bind:key="todo.id"
+			v-bind:title="todo.title"
+			v-on:remove="todos.splice(index, 1)"></li>
+		</ul>
+	</div>
+	<script>
+		Vue.config.devtools = true;
+		Vue.component('todo-item', {
+			// emitで親にデータを渡す
+			template: `\
+			<li>\
+				{{title}}\
+				<button v-on:click="$emit(\'remove\')">Remove</button>\
+				</li>\
+			`,
+			props: ['title']
+		});
+		var app = new Vue({
+			el: '#todo-list-example',
+			data: {
+				newTodoText: '',
+				todos: [
+					{id: 1, title: 'do the dishes'},
+					{id: 12, title: 'take out the trash'},
+					{id: 12, title: 'mow the lawn'},
+				],
+				nextTodoId: 4
+			},
+			methods: {
+				addNewTodo: function () {
+					this.todos.push({
+						id: this.nextTodoId++,
+						title: this.newTodoText
+					})
+					this.newTodoText='';
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

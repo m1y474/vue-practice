@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app-7">
+		<ul v-if="todos.length">
+			<li v-for="todo in todos">
+				{{todo.task}}
+			</li>
+		</ul>
+		<p v-else>no todo left!</p>
+	</div>
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#app-7',
+			data: {
+				todos: [
+					// {task: 'todo', isCompleted: false},
+					// {task: 'todo1', isCompleted: false},
+					// {task: 'todo2', isCompleted: true},
+					// {task: 'todo3', isCompleted: false},
+				],
+			}
+		});
+	</script>
+</body>
+
+</html>

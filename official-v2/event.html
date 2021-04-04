@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="example-1">
+		<button v-on:click="counter += 10000">Add 1</button>
+		<p>The button above has been clicked {{counter}} times.</p>
+	</div>
+	<div id="example-2">
+		<button v-on:click="greet">Greet</button>
+	</div>
+	<div id="example-3">
+		<button v-on:click="say('hi')">say hi</button>
+		<button v-on:click="say('what')">say what</button>
+		<button v-on:click="warn('Form cannot be submitted yet.', $event)">submit</button>
+	</div>
+	<form id="example-4">
+		<input v-on:keyup="submit">
+	<div v-on:click.meta="doSomething">do something.</div>
+
+	</form>
+
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#example-1',
+			data: {
+				counter: 0
+			}
+		});
+		new Vue({
+			el: '#example-2',
+			data: {
+				name: 'Vue.js',
+			},
+			methods: {
+				greet: function(event) {
+					alert(`Hello `+ this.name+'!');
+					if(event) {
+						alert(event.target.tagName);
+					}
+				}
+			}
+		});
+		new Vue({
+			el: '#example-3',
+			methods: {
+				say: function(msg) {
+					alert(msg);
+				},
+				warn: function(msg, event) {
+					console.log(event)
+					if (event) {
+						event.preventDefault();
+					}
+					alert(msg);
+				}
+			}
+		});
+		var ex4Vm = new Vue({
+			el: '#example-4',
+			methods: {
+				submit: function(value) {
+					console.log(value.key);
+				},
+				doSomething: function (value) {
+					alert('pushed command key');
+				}
+			},
+		});
+	</script>
+</body>
+
+</html>

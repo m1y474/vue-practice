@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="example-1">
+		<input v-model="text">
+		<p>text is: {{text}}</p>
+		<textarea v-model="lMsg"></textarea>
+		<p v-bind:style="styleObj">textarea is: {{lMsg}}</p>
+		<input type="checkbox" id="checkbox" v-model="checked">
+		<label for="checkbox">{{checked ? 'true' : 'false'}}</label>
+
+		<input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+		<label for="jack">jack</label>
+		<input type="checkbox" id="john" value="john" v-model="checkedNames">
+		<label for="john">john</label>
+		<input type="checkbox" id="mike" value="mike" v-model="checkedNames">
+		<label for="mike">mike</label>
+		<span>checked names: {{checkedNames}}</span>
+
+		<input type="radio" id="one" value="one" v-model="picked">
+		<label for="one">one</label>
+		<input type="radio" id="two" value="two" v-model="picked">
+		<label for="two">two</label>
+		<span>picked: {{picked}}</span>
+
+		<select v-model="selected">
+			<option disabled value="">please select one</option>
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select>
+		<span>selected: {{selected}}</span>
+
+		<select v-model="selectedMultiple" multiple>
+			<option>A</option>
+			<option>B</option>
+			<option>C</option>
+		</select>
+		<span>selected: {{selectedMultiple}}</span>
+
+		<select v-model="selectedFor">
+			<option v-for="option in options" v-bind:value="option.value">
+				{{option.text}}
+			</option>
+		</select>
+		<span>selected: {{selectedFor}}</span>
+	</div>
+
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#example-1',
+			data: {
+				styleObj: {
+					whiteSpace: 'pre-line'
+				},
+				text: '',
+				lMsg: '',
+				checked: '',
+				checkedNames: [],
+				picked: '',
+				selected: '',
+				selectedMultiple: [],
+				selectedFor: '',
+				options: [
+					{text: 'one', value: 'A'},
+					{text: 'two', value: 'B'},
+					{text: 'three', value: 'C'},
+					{text: 'four', value: 'D'},
+				],
+			}
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<div id="app-7">
+		<p>original message: {{ message }}</p>
+		<p>computed reversed message: {{ reversedMessage }}</p>
+	</div>
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#app-7',
+			data: {
+				message: 'hello!',
+			},
+			watch: {
+				full: function (val) {
+					console.log(val);
+					this.message = val + '!!!!';
+				}
+			},
+			computed: {
+				reversedMessage: function() { // ここでアロー関数にするとthisの範囲がwindowになる
+					console.log(Date.now());
+					return this.message.split('').reverse().join();
+				}
+			}
+		});
+	</script>
+</body>
+</html>

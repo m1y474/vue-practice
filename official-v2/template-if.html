@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- 複数の要素に対してifディレクティブを使用したい時にはtemplate要素でラップして使える -->
+	<div id="app-7">
+		<template v-if="ok">
+			<h1>title</h1>
+			<p>paragraph 1</p>
+			<p>paragraph 2</p>
+		</template>
+
+		<div v-if="Math.random() > 0.5">
+			Now you see mee
+		</div>
+		<div v-else>
+			Now you don't
+		</div>
+
+		<div v-if="type === 'A'">A</div>
+		<div v-else-if="type === 'B'">B</div>
+		<div v-else-if="type === 'C'">C</div>
+		<div v-else>other</div>
+
+		<!-- v-showはこれと同じだがDOMに残る -->
+		<template v-if="loginType === 'username'">
+			<label>username</label>
+			<input placeholder="enter your username." key="username-input">
+			<!-- 異なる値を持つkeyをつけるとifが切り替わると入力値もクリアされる -->
+		</template>
+		<template v-else>
+			<label>email</label>
+			<input placeholder="enter your email address." key="email-input">
+		</template>
+	</div>
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#app-7',
+			data: {
+				ok: true,
+				type: 'lll',
+				loginType: 'email'
+			}
+		});
+	</script>
+</body>
+
+</html>

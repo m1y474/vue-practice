@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<ul id="app-7" class="demo">
+		<li v-for="(value, index) in object">
+			<p>{{index}}: {{value.title}}</p>
+			<p>{{index}}: {{value.author}}</p>
+			<p>{{index}}: {{value.publishedAt}}</p>
+		</li>
+	</ul>
+	<script>
+		Vue.config.devtools = true;
+		var app = new Vue({
+			el: '#app-7',
+			data: {
+				object: [{
+					title: 'how to do lists in vue',
+					author: 'jane doe',
+					publishedAt: '2016-04-10',
+				}, {
+					title: 'how to do lists in vue2',
+					author: 'jane doe1',
+					publishedAt: '2016-04-10',
+				}, {
+					title: 'how to do lists in vue3',
+					author: 'jane doe2',
+					publishedAt: '2016-04-10',
+				}, {
+					title: 'how to do lists in vue4',
+					author: 'jane doe3',
+					publishedAt: '2016-04-10',
+				}]
+			}
+		});
+	</script>
+</body>
+
+</html>
