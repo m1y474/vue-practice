@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="example-1">
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+		<button-counter></button-counter>
+	</div>
+	<script>
+		// グローバルにコンポーネントを登録してる
+		Vue.component('button-counter', {
+			// コンポーネントのdataオプションは関数でなければならない
+			// 各インスタンスが返されるデータオブジェクトの独立したコピーを保持できるため
+			data: function () {
+				return {
+					count: 0
+				}
+			},
+			template: `<button v-on:click="count++">You clicked me {{ count }} times.</button>`
+		})
+		// コンポーネントの定義よりあとに書く必要がある
+		new Vue({
+			el: "#example-1"
+		})
+	</script>
+</body>
+
+</html>

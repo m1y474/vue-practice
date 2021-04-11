@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="example-1">
+		<div :style="{ fontSize: postFontSize + 'em' }">
+			<!-- posts as postをテンプレートのpostにバインドしている -->
+			<blog-post v-on:enlarge-text="onEnlargeText" v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></blog-post>
+			<!-- ボタンをクリックするとテキストを拡大する必要があることを親コンポーネントに伝える必要がある
+			親はv-onを使って子コンポーネントで起きた任意のイベントを検知できる。onEnlargeTextメソッドを呼び出している -->
+		</div>
+	</div>
+	<script>
+		Vue.component('blog-post', {
+			props: ['post'],
+			template: `
+			<div class="blog-post">
+				<h3>{{ post.title }}</h3>
+
+				<!-- 親に定義されているメソッドを$emitで指定することで呼び出すことができる -->
+				<!-- $emitの第２引数を使うと親に$eventという名前で値を渡すことができる -->
+				<button v-on:click="$emit('enlarge-text', .2)">Enlarge text</button>
+				<div v-html="post.content"></div>
+			</div>
+			`
+			// 子コンポーネントではビルトインの$emitメソッドにイベントの名前を渡して呼び出すことでイベントを送出することができる
+		})
+		new Vue({
+			el: "#example-1",
+			data: {
+				posts: [
+					{ id: 1, title: 'title1', content: 'content1' },
+					{ id: 2, title: 'title2', content: 'content2' },
+					{ id: 3, title: 'title3', content: 'content3' },
+					{ id: 4, title: 'title4', content: 'content4' },
+				],
+				postFontSize: 1
+			},
+			methods: {
+				onEnlargeText: function (enlargeAmount) {
+					this.postFontSize += enlargeAmount;
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
